@@ -22,6 +22,7 @@ public class Apollo2_liveweb_Docker {
         String password = "Health#123"; 
 
         String containerId = "a35d6cd55cf3"; 
+	 System.out.println("apollo2 liveweb docker id = "+containerId);
 
 
 

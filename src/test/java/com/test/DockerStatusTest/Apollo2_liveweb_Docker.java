@@ -17,12 +17,12 @@ public class Apollo2_liveweb_Docker {
         String vmIpAddress = "172.16.20.232";
         String username = "hbp";
         String password = "Health#123";
-        String containerId = "a35d6cd55cf3";
+        String containerName = "web"; 
 
-        System.out.println("Apollo2 LiveWeb Docker ID = " + containerId);
+        System.out.println("Apollo2 LiveWeb Docker = " + containerName);
 
-        if (containerId.isEmpty()) {
-            System.out.println("Container ID is required.");
+        if (containerName.isEmpty()) {
+            System.out.println("Container name is required.");
             return;
         }
 
@@ -33,9 +33,9 @@ public class Apollo2_liveweb_Docker {
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
 
-            // Execute the docker inspect command to check the container's status
+            // Execute the docker inspect command using container name
             ChannelExec channel = (ChannelExec) session.openChannel("exec");
-            channel.setCommand("docker inspect --format='{{.State.Status}}' " + containerId);
+            channel.setCommand("docker inspect --format='{{.State.Status}}' " + containerName);
             channel.setInputStream(null);
             channel.setErrStream(System.err);
             BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
@@ -67,7 +67,7 @@ public class Apollo2_liveweb_Docker {
 
     public void sendEmailAlert(String messageBody) {
         String from = "automationsoftware25@gmail.com";
-         // TO recipients
+        // TO recipients
         String[] to = {
             "nitheshkumarsundhar@gmail.com",
             "ramanan@htic.iitm.ac.in"
@@ -99,7 +99,6 @@ public class Apollo2_liveweb_Docker {
         try {
             Message message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress(from, "Docker Monitor"));
-            // Convert arrays to comma-separated strings
             message.setRecipients(
                 Message.RecipientType.TO,
                 InternetAddress.parse(String.join(",", to))

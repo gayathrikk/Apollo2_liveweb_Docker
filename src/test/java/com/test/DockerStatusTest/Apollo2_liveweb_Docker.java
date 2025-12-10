@@ -16,7 +16,7 @@ public class Apollo2_liveweb_Docker {
 
         String vmIpAddress = "172.16.20.232";
         String username = "hbp";
-        String password = "Health#123";
+        String password = "hbpsgbclab@123";
         String containerName = "web"; 
 
         System.out.println("Apollo2 LiveWeb Docker = " + containerName);
